@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todolist/bloc/bloc/todo_bloc.dart';
 import 'package:todolist/check.dart';
+import 'package:todolist/taskpage.dart';
 
 void main() {
   runApp(MyApp());
@@ -73,10 +74,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
-      floatingActionButton: FloatingActionButton(
+      /*floatingActionButton: FloatingActionButton(
         onPressed: () => null,
         child: Icon(Icons.add),
-      ),
+      ),*/
     );
   }
 }
