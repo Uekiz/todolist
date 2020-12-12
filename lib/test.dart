@@ -1,4 +1,7 @@
-part of 'main.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/bloc/bloc/todo_bloc.dart';
+import 'package:todolist/model/todomodel.dart';
 
 class CheckTodo extends StatefulWidget {
   @override
@@ -7,30 +10,20 @@ class CheckTodo extends StatefulWidget {
 
 class _CheckTodoState extends State<CheckTodo> {
   final checkall = TodoModel(note: 'All');
-  final chklists = [];
+  final chklists = [
+    TodoModel(note: '1'),
+    TodoModel(note: '3'),
+    TodoModel(note: '2'),
+  ];
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: BlocBuilder<TodoBloc, TodoState>(
-          builder: (context, state) {
-            return ListView.builder(
-                itemCount: state.lists.length,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Card(
-                        child: buildToggleCheckbox(checkall),
-                      ),
-                      Divider(),
-                      ...state.lists.map(buildSingleCheckbox).toList(),
-                      FloatingActionButton(
-                        onPressed: () => null,
-                        child: Icon(Icons.add),
-                      )
-                    ],
-                  );
-                });
-          },
+        body: ListView(
+          children: [
+            buildToggleCheckbox(checkall),
+            Divider(),
+            ...chklists.map(buildSingleCheckbox).toList(),
+          ],
         ),
       );
 

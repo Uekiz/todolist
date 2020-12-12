@@ -14,14 +14,13 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
   Stream<TodoState> mapEventToState(
     TodoEvent event,
   ) async* {
-    if (event is AddTodo) {
-      var list = _addlist();
-      state.lists.add(list);
-      yield TodoState();
+    if (event is LoadTodo) {
+      yield TodoState(lists: await fetchlist());
     }
   }
 
-  TodoModel _addlist() {
-    return TodoModel(note: '123');
+  Future<List> fetchlist() async {
+    final resp = todosList;
+    return resp;
   }
 }

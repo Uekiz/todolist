@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todolist/bloc/bloc/todo_bloc.dart';
-import 'package:todolist/check.dart';
-import 'package:todolist/taskpage.dart';
+import 'package:todolist/model/todomodel.dart';
+
+part 'check.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
-      home: MyStatefulWidget(),
+      home: BlocProvider(
+        create: (context) => TodoBloc()..add(LoadTodo()),
+        child: MyStatefulWidget(),
+      ),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -74,10 +78,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
-      /*floatingActionButton: FloatingActionButton(
-        onPressed: () => null,
-        child: Icon(Icons.add),
-      ),*/
     );
   }
 }
