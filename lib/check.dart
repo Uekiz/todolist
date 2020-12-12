@@ -24,7 +24,8 @@ class _CheckTodoState extends State<CheckTodo> {
                       Divider(),
                       ...state.lists.map(buildSingleCheckbox).toList(),
                       FloatingActionButton(
-                        onPressed: () => null,
+                        onPressed: () =>
+                            BlocProvider.of<TodoBloc>(context).add(AddTodo()),
                         child: Icon(Icons.add),
                       )
                     ],

@@ -17,10 +17,18 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     if (event is LoadTodo) {
       yield TodoState(lists: await fetchlist());
     }
+    if (event is AddTodo) {
+      yield TodoState(lists: await addlist());
+    }
   }
 
   Future<List> fetchlist() async {
     final resp = todosList;
     return resp;
+  }
+
+  Future<List> addlist() async {
+    state.lists.add(TodoModel(note: 'asdasf'));
+    return state.lists;
   }
 }
